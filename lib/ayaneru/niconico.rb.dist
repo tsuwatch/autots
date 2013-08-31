@@ -1,16 +1,18 @@
 require 'mechanize'
+require 'singleton'
 
 module Ayaneru
 	class Niconico
+		include 'Singleton'
 		URL = {
 			login: 'https://secure.nicovideo.jp/secure/login?site=niconico'
 		}
 
 		attr_reader :agent, :logined
 
-		def initialize(mail, password)
-			@mail = mail
-			@password = password
+		def initialize
+			@mail = ''
+			@password = ''
 
 			@logined = false
 

@@ -3,6 +3,6 @@ require 'ayaneru/niconico'
 
 module Ayaneru
 	def self.niconico
-		@niconico = Niconico.new('', '')
+		@niconico = Niconico.instance
 	end
 end
