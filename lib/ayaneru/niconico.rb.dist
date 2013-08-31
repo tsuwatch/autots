@@ -3,7 +3,7 @@ require 'singleton'
 
 module Ayaneru
 	class Niconico
-		include 'Singleton'
+		include Singleton
 		URL = {
 			login: 'https://secure.nicovideo.jp/secure/login?site=niconico'
 		}
