@@ -1,2 +1,7 @@
 %h1 たいむしふとすけじゅーる
+%form{:action=>"/schedule", :method=>"post"}
+  %input{:type=>"texfield",:name=>"tag"}
+  %input{:type=>"submit", :value=>"とうろく"}
+
+%p #{@registered_tags}
 #{@json["values"]}
