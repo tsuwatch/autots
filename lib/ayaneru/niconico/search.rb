@@ -2,7 +2,7 @@ require 'json'
 
 module Ayaneru
 	class Niconico
-		def search
+		def search(tag)
 			post_data = {}
 			data_filters = Array.new
 			data_filters[0] = {
@@ -17,10 +17,10 @@ module Ayaneru
 			}
 			data_filters[2] = {
 				"field" => "start_time",
-				"from" => "2013-09-01 00:00:01",
+				"from" => "2013-09-02 00:00:00",
 				"include_lower" => true,
 				"include_upper" => true,
-				"to" => "2013-09-01 23:59:59",
+				"to" => "2013-09-02 23:59:59",
 				"type" => "range"
 			}
 			data_filters[3] = {
@@ -49,7 +49,7 @@ module Ayaneru
 				"member_only"
 			]
 			post_data["order"] = "desc"
-			post_data["query"] = "アニメ"
+			post_data["query"] = tag
 			post_data["reason"] = "default"
 			post_data["search"] = ["tags"]
 			post_data["service"] = ["live"]
