@@ -9,7 +9,7 @@ module Ayaneru
 
 		get '/schedule' do
 			result = Ayaneru.niconico.search.to_s.split("\n")
-			@json = JSON.parse(r[2])
+			@json = JSON.parse(result[2])
 
 			haml :schedule
 		end
