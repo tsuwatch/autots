@@ -1,6 +1,4 @@
 require 'json'
-require 'uri'
-require 'net/http'
 
 module Ayaneru
 	class Niconico
@@ -61,9 +59,6 @@ module Ayaneru
 
 			response = Ayaneru.niconico.agent.post(URL[:search], JSON.pretty_generate(post_data))
 			response.body
-			#uri = URI.parse(URL[:search])
-			#http = Net::HTTP.new(uri.host)
-			#response = http.post(uri.path, JSON.pretty_generate(post_data))
 		end
 	end
 end
