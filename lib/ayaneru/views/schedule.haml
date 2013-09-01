@@ -3,5 +3,10 @@
   %input{:type=>"texfield",:name=>"tag"}
   %input{:type=>"submit", :value=>"とうろく"}
 
-%p #{@registered_tags}
-#{@results}
+
+- for tag in @registered_tags do
+  %p #{tag}
+  - if @results[tag]["values"]
+    - for result in @results[tag]["values"]
+      %p
+        %a{:href => result["cmsid"]} #{result["title"]}

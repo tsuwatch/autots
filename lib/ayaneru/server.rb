@@ -9,10 +9,10 @@ module Ayaneru
 
 		get '/schedule' do
 			@registered_tags = Ayaneru.redis.lrange "tags", 0, -1
-			@results = []
+			@results = {}
 			@registered_tags.each do |tag|
 				r = Ayaneru.niconico.search(tag).to_s.split("\n")
-				@results.push JSON.parse(r[2])
+				@results[tag] = JSON.parse(r[2])
 			end
 
 			haml :schedule
