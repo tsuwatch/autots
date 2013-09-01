@@ -1,4 +1,6 @@
 require 'json'
+require 'uri'
+require 'net/http'
 
 module Ayaneru
 	class Niconico
@@ -17,7 +19,7 @@ module Ayaneru
 			}
 			data_filters[2] = {
 				"field" => "start_time",
-				"from" => "2013-09-01 00:00:00",
+				"from" => "2013-09-01 00:00:01",
 				"include_lower" => true,
 				"include_upper" => true,
 				"to" => "2013-09-01 23:59:59",
@@ -49,7 +51,7 @@ module Ayaneru
 				"member_only"
 			]
 			post_data["order"] = "desc"
-			post_data["query"] = "艦これ"
+			post_data["query"] = "アニメ"
 			post_data["reason"] = "default"
 			post_data["search"] = ["tags"]
 			post_data["service"] = ["live"]
@@ -59,6 +61,9 @@ module Ayaneru
 
 			response = Ayaneru.niconico.agent.post(URL[:search], JSON.pretty_generate(post_data))
 			response.body
+			#uri = URI.parse(URL[:search])
+			#http = Net::HTTP.new(uri.host)
+			#response = http.post(uri.path, JSON.pretty_generate(post_data))
 		end
 	end
 end
