@@ -5,6 +5,8 @@ module Ayaneru
 		def search(tag)
 			post_data = {}
 			data_filters = Array.new
+			today = Time.now
+			until_days = 7
 			data_filters[0] = {
 				"field" => "ss_adult",
 				"type" => "equal",
@@ -16,14 +18,19 @@ module Ayaneru
 				"value" => "reserved"
 			}
 			data_filters[2] = {
-				"field" => "start_time",
-				"from" => "2013-09-02 00:00:00",
-				"include_lower" => true,
-				"include_upper" => true,
-				"to" => "2013-09-02 23:59:59",
-				"type" => "range"
+				"field" => "provider_type",
+				"type" => "equal",
+				"value" => "official"
 			}
 			data_filters[3] = {
+				"field" => "start_time",
+				"from" => Time.local(today.year, today.month, today.day, 0, 0, 0).strftime("%Y-%m-%d %H:%M:%S"),
+				"include_lower" => true,
+				"include_upper" => true,
+				"to" => Time.local(today.year, today.month, today.day + until_days, 23, 59, 59).strftime("%Y-%m-%d %H:%M:%S"),
+				"type" => "range"
+			}
+			data_filters[4] = {
 				"field" => "timeshift_enabled",
 				"type" => "equal",
 				"value" => true
