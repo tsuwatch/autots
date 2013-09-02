@@ -6,7 +6,8 @@ module Ayaneru
 		include Singleton
 		URL = {
 			login: 'https://secure.nicovideo.jp/secure/login?site=niconico',
-			search: 'http://api.search.nicovideo.jp/api/'
+			search: 'http://api.search.nicovideo.jp/api/',
+			reserve: 'http://live.nicovideo.jp/api/watchingreservation'
 		}
 
 		attr_reader :agent, :logined
@@ -24,9 +25,13 @@ module Ayaneru
 
 		def login
 			page = @agent.post(URL[:login], 'mail' => @mail, 'password' => @password)
+
+			raise LoginError, "Failed to login (x-niconico-authflag is 0)" if page.header["x-niconico-authflag"] == '0'
 			@logined = true
 		end
 	end
+	class LoginError < StandardError; end
 end
 
 require_relative 'niconico/search'
+require_relative 'niconico/reserve'

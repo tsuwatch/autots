@@ -22,5 +22,11 @@ module Ayaneru
 			Ayaneru.redis.rpush "tags", params[:tag]
 			redirect '/schedule'
 		end
+
+		get '/reserve' do
+			p Ayaneru.niconico.reserve('lv147342240')
+
+			haml :index
+		end
 	end
 end
