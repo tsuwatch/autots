@@ -4,7 +4,7 @@ module Ayaneru
 			login unless @logined
 			lv = lv.sub(/^lv/, "")
 			ulck = get_ulck(lv)
-			response = do_reserve(lv, ulck)
+			response = do_reservation(lv, ulck)
 		end
 
 		def get_ulck(lv)
@@ -20,7 +20,7 @@ module Ayaneru
 			ulck[0]
 		end
 
-		def do_reserve(lv, ulck)
+		def do_reservation(lv, ulck)
 			login unless @logined
 
 			post_data = {
