@@ -13,7 +13,7 @@ module Ayaneru
 		attr_reader :agent, :logined
 
 		def initialize
-			YAML.load_file(File.expand_path(File.dirname(__FILE__)) + '/account.yml').each do |sym, value|
+			YAML.load_file(File.expand_path(File.dirname(__FILE__)) + '/niconico_account.yml').each do |sym, value|
 				instance_variable_set('@' + sym, value)
 			end
 
