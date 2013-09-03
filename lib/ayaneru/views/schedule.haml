@@ -1,12 +1,18 @@
 %h1 たいむしふとすけじゅーる
-%form{:action=>"/schedule", :method=>"post"}
-  %input{:type=>"texfield",:name=>"tag"}
-  %input{:type=>"submit", :value=>"とうろく"}
+%form{:action => "/schedule", :method => "post"}
+  %input{:type => "texfield", :name => "tag"}
+  %input{:type => "submit", :value => "とうろく"}
 
 
 - for tag in @registered_tags do
-  %p #{tag}
-  - if @results[tag]["values"]
-    - for result in @results[tag]["values"]
-      %p
-        %a{:href => result["cmsid"]} #{result["title"]}
+  %dl
+    %dt
+      #{tag}
+      %form{:action => "/delete", :method => "post"}
+        %input{:type => "hidden", :name => "tag", :value => tag}
+        %input{:type => "submit", :value => "さくじょ"}
+      - if @results[tag]["values"]
+        - for result in @results[tag]["values"]
+          %dd
+            %a{:href => "http://live.nicovideo.jp/watch/#{result['cmsid']}"} #{result["title"]}
+            #{result['start_time']} ~ #{result['live_end_time']}

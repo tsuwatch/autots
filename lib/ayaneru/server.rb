@@ -27,5 +27,10 @@ module Ayaneru
 			Ayaneru.niconico.reserve(params[:lv])
 			:ok
 		end
+
+		post '/delete' do
+			Ayaneru.redis.lrem "tags", 1, params[:tag]
+			redirect '/schedule'
+		end
 	end
 end
