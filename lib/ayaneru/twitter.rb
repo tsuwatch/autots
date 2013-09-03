@@ -5,7 +5,7 @@ require 'twitter'
 module Ayaneru
 	class Twitter
 		include Singleton
-		attr_reader :consumer_key, :consumer_secret, :oauth_token, :oauth_token_secret
+		attr_reader :twitter
 
 		def initialize
 			YAML.load_file(File.expand_path(File.dirname(__FILE__)) + '/twitter_account.yml').each do |sym, value|
