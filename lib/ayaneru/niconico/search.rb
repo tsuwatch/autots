@@ -2,11 +2,11 @@ require 'json'
 
 module Ayaneru
 	class Niconico
-		def search(tag)
+		def search(tag, until_days)
 			post_data = {}
 			data_filters = Array.new
 			today = Time.now
-			until_days = 7
+			until_days = until_days
 			data_filters[0] = {
 				"field" => "ss_adult",
 				"type" => "equal",

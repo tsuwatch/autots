@@ -11,7 +11,7 @@ module Ayaneru
 			@registered_tags = Ayaneru.redis.lrange "tags", 0, -1
 			@results = {}
 			@registered_tags.each do |tag|
-				r = Ayaneru.niconico.search(tag).to_s.split("\n")
+				r = Ayaneru.niconico.search(tag, 7).to_s.split("\n")
 				@results[tag] = JSON.parse(r[2])
 			end
 
@@ -23,8 +23,18 @@ module Ayaneru
 			redirect '/schedule'
 		end
 
-		post '/reserve' do
-			Ayaneru.niconico.reserve(params[:lv])
+		get '/reserve' do
+			@registered_tags = Ayaneru.redis.lrange "tags", 0, -1
+			@registered_tags.each do |tag|
+				r = Ayaneru.niconico.search(tag, 1).to_s.split("\n")
+				@results = JSON.parse(r[2])
+				if @results["values"]
+					@results["values"].each do |value|
+						Ayaneru.niconico.reserve(value['cmsid'])
+					end
+				end
+			end
+
 			:ok
 		end
 
