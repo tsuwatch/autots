@@ -23,10 +23,9 @@ module Ayaneru
 			redirect '/schedule'
 		end
 
-		get '/reserve' do
-			p Ayaneru.niconico.reserve('lv147342240')
-
-			haml :index
+		post '/reserve' do
+			Ayaneru.niconico.reserve(params[:lv])
+			:ok
 		end
 	end
 end
