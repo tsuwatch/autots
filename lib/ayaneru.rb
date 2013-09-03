@@ -15,6 +15,6 @@ module Ayaneru
 	end
 
 	def self.twitter
-		@twitter |== Twitter.instance
+		@twitter ||= Twitter.instance
 	end
 end
