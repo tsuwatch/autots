@@ -4,15 +4,15 @@
   %input{:type => "submit", :value => "とうろく"}
 
 
-- for tag in @registered_tags do
+- @registered_tags.each do |tag|
   %dl
     %dt
       #{tag}
       %form{:action => "/delete", :method => "post"}
         %input{:type => "hidden", :name => "tag", :value => tag}
         %input{:type => "submit", :value => "さくじょ"}
-      - if @results[tag]["values"]
-        - for result in @results[tag]["values"]
-          %dd
-            %a{:href => "http://live.nicovideo.jp/watch/#{result['cmsid']}"} #{result["title"]}
-            #{result['start_time']} ~ #{result['live_end_time']}
+        - if @results[tag]['values']
+          - @results[tag]['values'].each do |value|
+            %dd
+              %a{:href => "http://live.nicovideo.jp/watch/#{value[:cmsid]}"} #{value['title']}
+              #{value['start_time']} ~ #{value['live_end_time']}
