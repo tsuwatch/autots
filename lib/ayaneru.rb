@@ -1,6 +1,6 @@
 require 'ayaneru/server'
 require 'ayaneru/niconico'
-require 'ayaneru/twitter'
+require 'twitter'
 require 'redis'
 
 module Ayaneru
@@ -15,6 +15,15 @@ module Ayaneru
 	end
 
 	def self.twitter
-		@twitter ||= Twitter.instance
+		YAML.load_file(File.expand_path(File.dirname(__FILE__)) + '/ayaneru/twitter_account.yml').each do |sym, value|
+				instance_variable_set('@' + sym, value)
+		end
+
+		@twitter ||= Twitter::Client.new(
+			:consumer_key => @consumer_key,
+			:consumer_secret => @consumer_secret,
+			:oauth_token => @oauth_token,
+			:oauth_token_secret => @oauth_token_secret
+		)
 	end
 end
