@@ -6,3 +6,4 @@ gem "mechanize"
 gem "redis"
 gem 'twitter'
 gem 'eventmachine'
+gem 'thin'
