@@ -23,22 +23,6 @@ module Ayaneru
 			redirect '/schedule'
 		end
 
-		get '/reserve' do
-			@registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
-			@registered_tags.each do |tag|
-				r = Ayaneru.niconico.search(tag, 1).to_s.split("\n")
-				@results = JSON.parse(r[2])
-				if @results[:values]
-					@results[:values].each do |value|
-						Ayaneru.niconico.reserve(value[:cmsid])
-						Ayaneru.twitter.update "@tsuwatch 『#{value[:title]}』（http://live.nicovideo.jp/watch/#{value[:cmsid]}）をタイムシフト予約しました．"
-					end
-				end
-			end
-
-			:ok
-		end
-
 		post '/delete' do
 			Ayaneru.redis.lrem "tags", 1, params[:tag]
 			redirect '/schedule'

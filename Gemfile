@@ -5,3 +5,4 @@ gem "haml"
 gem "mechanize"
 gem "redis"
 gem 'twitter'
+gem 'eventmachine'

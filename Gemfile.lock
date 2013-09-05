@@ -3,6 +3,7 @@ GEM
   specs:
     domain_name (0.5.13)
       unf (>= 0.0.5, < 1.0.0)
+    eventmachine (1.0.3)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     haml (4.0.3)
@@ -50,6 +51,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  eventmachine
   haml
   mechanize
   redis
