@@ -27,7 +27,7 @@ module Ayaneru
 				"from" => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
 				"include_lower" => true,
 				"include_upper" => true,
-				"to" => Time.local(today.year, today.month, today.day + until_days, 23, 59, 59).strftime("%Y-%m-%d %H:%M:%S"),
+				"to" => Time.local(today.year, today.month, today.day + until_days, 0, 0, 0).strftime("%Y-%m-%d %H:%M:%S"),
 				"type" => "range"
 			}
 			data_filters[4] = {
