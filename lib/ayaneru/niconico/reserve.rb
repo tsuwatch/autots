@@ -16,6 +16,7 @@ module Ayaneru
 				'token' => "watch_modal_0_official_lv#{lv}_comingsoon"
 			}
 			response = Ayaneru.niconico.agent.get(URL[:reserve], query)
+      return false unless response.at('div.reserve')
 			ulck = response.at('div.reserve').inner_html.scan(/ulck_[0-9]+/)
 			ulck[0]
 		end
@@ -33,5 +34,6 @@ module Ayaneru
 			response = Ayaneru.niconico.agent.post(URL[:reserve], post_data)
 		end
 	end
+  class UlckError < StandardError; end
 end
 
