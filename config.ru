@@ -22,8 +22,7 @@ EM::defer do
 					end
 				end
 			end
-
-		end
 		yesterday = today
+		end
 	end
 end
