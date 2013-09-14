@@ -18,7 +18,7 @@ EM::defer do
 				if results['values']
 					results['values'].each do |value|
 						Ayaneru.niconico.reserve(value["cmsid"])
-						Ayaneru.twitter.update "@#{Ayaneru.twitter.user.name}『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．"
+						Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name}『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．"
 					end
 				end
 			end
