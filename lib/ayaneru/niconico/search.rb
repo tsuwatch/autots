@@ -5,8 +5,6 @@ module Ayaneru
 		def search(tag, until_days)
 			post_data = {}
 			data_filters = Array.new
-			today = Time.now
-			until_days = until_days
 			data_filters[0] = {
 				"field" => "ss_adult",
 				"type" => "equal",
@@ -27,7 +25,7 @@ module Ayaneru
 				"from" => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
 				"include_lower" => true,
 				"include_upper" => true,
-				"to" => Time.local(today.year, today.month, today.day + until_days, 0, 0, 0).strftime("%Y-%m-%d %H:%M:%S"),
+				"to" => Time.at(Time.now.to_i + until_days * 24 * 60 * 60).strftime("%Y-%m-%d %H:%M:%S"),
 				"type" => "range"
 			}
 			data_filters[4] = {
