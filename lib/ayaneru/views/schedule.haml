@@ -14,5 +14,5 @@
         - if @results[tag]['values']
           - @results[tag]['values'].each do |value|
             %dd
-              %a{:href => "http://live.nicovideo.jp/watch/#{value[:cmsid]}"} #{value['title']}
+              %a{:href => "http://live.nicovideo.jp/watch/#{value['cmsid']}", :target => "_blank"} #{value['title']}
               #{value['start_time']} ~ #{value['live_end_time']}
