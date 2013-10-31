@@ -17,8 +17,11 @@ EM::defer do
 				results = JSON.parse(r[2])
 				if results['values']
 					results['values'].each do |value|
-						Ayaneru.niconico.reserve(value["cmsid"])
-						Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．"
+            begin
+					    Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．" if Ayaneru.niconico.reserve(value["cmsid"])
+            rescue => excepion
+              puts excepion.message
+            end
 					end
 				end
 			end
