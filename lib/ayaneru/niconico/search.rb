@@ -35,7 +35,7 @@ module Ayaneru
 			}
 			post_data["filters"] = data_filters
 			post_data["from"] = 0
-			post_data["issuer"] = "pc"
+			post_data["issuer"] = "http://github.com/tsuwatch/autots"
 			post_data["join"] = [
 				"cmsid",
 				"title",
