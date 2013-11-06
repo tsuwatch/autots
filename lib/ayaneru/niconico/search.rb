@@ -3,6 +3,7 @@ require 'json'
 module Ayaneru
 	class Niconico
 		def search(tag, until_days)
+      Ayaneru.niconico.agent.cookie_jar.clear!
 			post_data = {}
 			data_filters = Array.new
 			data_filters[0] = {
