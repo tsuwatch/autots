@@ -5,6 +5,7 @@ module Ayaneru
 			lv = lv.sub(/^lv/, "")
 			ulck = get_ulck(lv)
 			response = do_reservation(lv, ulck)
+      Ayaneru.niconico.agent.cookie_jar.clear!
 		end
 
 		def get_ulck(lv)
@@ -32,7 +33,6 @@ module Ayaneru
 			}
 
 			response = Ayaneru.niconico.agent.post(URL[:reserve], post_data)
-      return true
 		end
 	end
   class UlckError < StandardError; end
