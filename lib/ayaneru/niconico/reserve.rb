@@ -32,6 +32,7 @@ module Ayaneru
 			}
 
 			response = Ayaneru.niconico.agent.post(URL[:reserve], post_data)
+      return true
 		end
 	end
   class UlckError < StandardError; end
