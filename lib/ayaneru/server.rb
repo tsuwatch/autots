@@ -11,8 +11,13 @@ module Ayaneru
 			@registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
 			@results = {}
 			@registered_tags.each do |tag|
-				r = Ayaneru.niconico.search(tag, 7).to_s.split("\n")
-				@results[tag] = JSON.parse(r[2])
+				chunks = Ayaneru.niconico.search(tag, 7).to_s.split("\n")
+        chunks.each do |chunk|
+          row = JSON.parse(chunk)
+          next if !(row.has_value?('hits') and row.key?('values'))
+				  @results[tag] = row
+          break
+        end
 			end
 
 			haml :schedule

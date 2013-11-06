@@ -11,7 +11,7 @@
       %form{:action => "/delete", :method => "post"}
         %input.btn.btn-default{:type => "hidden", :name => "tag", :value => tag}
         %input.btn.btn-default{:type => "submit", :value => "さくじょ"}
-        - if @results[tag]['values']
+        - if @results[tag]
           - @results[tag]['values'].each do |value|
             %dd
               %a{:href => "http://live.nicovideo.jp/watch/#{value['cmsid']}", :target => "_blank"} #{value['title']}
