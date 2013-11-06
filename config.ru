@@ -18,7 +18,11 @@ EM::defer do
         if results['values']
           results['values'].each do |value|
             begin
-              Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．" if Ayaneru.niconico.reserve(value["cmsid"])
+              if Ayaneru.niconico.reserve(value["cmsid"])
+                Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．"
+              else
+                Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）のタイムシフト予約に失敗しました"
+              end
             rescue => exception
               puts exception.message
             end
