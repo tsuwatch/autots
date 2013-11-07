@@ -29,6 +29,11 @@ module Ayaneru
 			raise LoginError, "Failed to login (x-niconico-authflag is 0)" if page.header["x-niconico-authflag"] == '0'
 			@logined = true
 		end
+
+    def logout
+      Ayaneru.niconico.agent.cookie_jar.clear!
+      @logined = false
+    end
 	end
 	class LoginError < StandardError; end
 end
