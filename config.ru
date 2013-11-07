@@ -20,6 +20,7 @@ EM::defer do
             begin
               ret = Ayaneru.niconico.reserve(value["cmsid"])
             rescue => exception
+              puts exception.message
               begin
                 Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）のタイムシフト予約に失敗しました"
               rescue => exception
