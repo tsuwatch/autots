@@ -22,7 +22,7 @@ EM::defer do
             rescue => exception
               puts exception.message
               begin
-                Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} 『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）のタイムシフト予約に失敗しました"
+                Ayaneru.twitter.update "@#{Ayaneru.twitter.user.screen_name} これ以上タイムシフト予約できません．『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）"
               rescue => exception
                 puts exception.message
               end
