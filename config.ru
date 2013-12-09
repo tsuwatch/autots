@@ -37,5 +37,6 @@ EM::defer do
       end
       yesterday = today
     end
+    sleep 60*60*1
   end
 end
