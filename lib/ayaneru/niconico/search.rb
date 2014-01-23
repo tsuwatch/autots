@@ -45,7 +45,7 @@ module Ayaneru
 				"open_time",
 				"start_time",
 				"live_end_time",
-				"view_counter",
+				#"view_counter",
 				"comment_counter",
 				"score_timeshift_reserved",
 				"provider_type",
