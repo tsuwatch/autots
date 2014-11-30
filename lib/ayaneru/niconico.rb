@@ -20,7 +20,7 @@ module Ayaneru
 			@logined = false
 
 			@agent = Mechanize.new
-			@agent.ssl_version = 'SSLv3'
+			@agent.ssl_version = 'TLSv1'
 		end
 
 		def login
