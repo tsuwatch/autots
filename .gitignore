@@ -3,3 +3,4 @@ twitter_account.yml
 log
 tmp
 vendor
+.env

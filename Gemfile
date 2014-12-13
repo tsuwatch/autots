@@ -7,3 +7,4 @@ gem "redis"
 gem 'twitter'
 gem 'eventmachine'
 gem 'thin'
+gem 'dotenv'
