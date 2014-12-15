@@ -1,13 +1,11 @@
 require 'sinatra/base'
 require 'haml'
-require 'dotenv'
 
 module Ayaneru
   class Server < Sinatra::Base
 
-    Dotenv.load
     use Rack::Auth::Basic, "Restricted Area" do |username, password|
-      username == ENV['USERNAME'] and password == ENV['PASSWORD']
+      username == ENV['BASIC_USERNAME'] and password == ENV['BASIC_PASSWORD']
     end
 
     get '/' do
