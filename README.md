@@ -27,8 +27,8 @@ $ bundle install
 
 ### 各種アカウント
 
-- niconico_account.yml
-- twitter_account.yml
+- niconico
+- Twitter
 
 を用意．Twitterは必須ではないので，必要なければうまく削除して下さい（config.ruで使用しています）  
 
