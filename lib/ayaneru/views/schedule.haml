@@ -1,8 +1,9 @@
-%h1 すけじゅーる
-%form{:action => "/schedule", :method => "post"}
-  %input{:type => "texfield", :name => "tag"}
-  %input.btn.btn-primary{:type => "submit", :value => "とうろく"}
-
+%h1 スケジュール
+%form.form-inline{:action => "/schedule", :method => "post"}
+  %div.form-group
+    %label タグ
+    %input.form-control{:type => "text", :name => "tag"}
+  %input.btn.btn-primary{:type => "submit", :value => "登録"}
 
 - @registered_tags.each do |tag|
   %dl
