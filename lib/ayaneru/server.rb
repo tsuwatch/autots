@@ -9,10 +9,6 @@ module Ayaneru
     end
 
     get '/' do
-      haml :index
-    end
-
-    get '/schedule' do
       @registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
       @results = {}
       @registered_tags.each do |tag|
@@ -25,17 +21,17 @@ module Ayaneru
         end
       end
 
-      haml :schedule
+      haml :index
     end
 
-    post '/schedule' do
+    post '/' do
       Ayaneru.redis.rpush "tags", params[:tag]
-      redirect '/schedule'
+      redirect '/'
     end
 
     post '/delete' do
       Ayaneru.redis.lrem "tags", 1, params[:tag]
-      redirect '/schedule'
+      redirect '/'
     end
   end
 end

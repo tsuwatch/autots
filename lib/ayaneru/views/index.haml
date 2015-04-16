@@ -1,4 +1,19 @@
-%h1 あやねるううううううううう
-%ul
-  %li
-    %a{:href => "/schedule"} すけじゅーる
+%h1 タイムシフトスケジュール
+%form.form-inline{:action => "/", :method => "post"}
+  %div.form-group
+    %input.form-control{:type => "text", :name => "tag", :placeholder => "タグ"}
+  %input.btn.btn-primary{:type => "submit", :value => "登録"}
+
+%dl
+  - @registered_tags.each do |tag|
+    %dt
+      %span.pull-left #{tag}
+      %form.tag-delete{:action => "/delete", :method => "post"}
+        %input{:type => "hidden", :name => "tag", :value => tag}
+        %button.btn.btn-xs.btn-danger{:type => "submit"}
+          %span.glyphicon.glyphicon-remove
+      - if @results[tag]
+        - @results[tag]['values'].each do |value|
+          %dd
+            #{value['start_time']} ~ #{value['live_end_time']}
+            %a{:href => "http://live.nicovideo.jp/watch/#{value['cmsid']}", :target => "_blank"} #{value['title']}
