@@ -1,10 +1,10 @@
 # autots
+
 あやねるううううううううう
-
-## autots？
-
 *automatic timeshift reservation system*の略です  
 ニコニコ生放送の公式生放送のなかから見たい放送を自動でタイムシフト予約することができます  
+
+![screenshot](images/screenshot.png)
 
 ## できること
 
