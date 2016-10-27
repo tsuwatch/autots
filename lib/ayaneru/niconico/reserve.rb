@@ -14,7 +14,7 @@ module Ayaneru
       query = {
         'mode' => 'watch_num',
         'vid' => lv,
-        'token' => "watch_modal_0_official_lv#{lv}_comingsoon"
+        'analytic' => "watch_modal_0_official_lv#{lv}_comingsoon"
       }
       response = Ayaneru.niconico.agent.get(URL[:reserve], query)
       raise UlckParseError, 'It is the limit of the number of your reservation' unless response.at('div.reserve')
