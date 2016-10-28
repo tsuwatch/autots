@@ -8,6 +8,8 @@ module Ayaneru
       username == ENV['BASIC_USERNAME'] and password == ENV['BASIC_PASSWORD']
     end
 
+    set :bind, '0.0.0.0'
+
     get '/' do
       @registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
       @results = {}

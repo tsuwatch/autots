@@ -11,7 +11,10 @@ module Ayaneru
   end
 
   def self.redis
-    @redis ||= Redis.connect
+    @redis ||= Redis.connect(
+      host: ENV['REDIS_HOST'] || Redis::Client::DEFAULTS[:host],
+      port: ENV['REDIS_PORT'] || Redis::Client::DEFAULTS[:port]
+    )
     @redis.client.reconnect unless @redis.client.connected?
     @redis
   end
