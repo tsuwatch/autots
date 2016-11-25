@@ -22,13 +22,13 @@ EM::defer do
             rescue => exception
               puts exception.message
               begin
-                Ayaneru.twitter.direct_message_create(Ayaneru.twitter.user.screen_name, "これ以上タイムシフト予約できません．『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）")
+                Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "これ以上タイムシフト予約できません．『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）")
               rescue => exception
                 puts exception.message
               end
             end
             begin
-              Ayaneru.twitter.direct_message_create(Ayaneru.twitter.user.screen_name, "『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．") if ret
+              Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．") if ret
             rescue => exception
               puts exception.message
             end
