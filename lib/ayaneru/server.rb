@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'haml'
+require 'tilt/haml'
 
 module Ayaneru
   class Server < Sinatra::Base
