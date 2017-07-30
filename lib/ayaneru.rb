@@ -3,6 +3,7 @@ require 'ayaneru/niconico'
 require 'twitter'
 require 'redis'
 require 'dotenv'
+require 'nicosa'
 
 Dotenv.load
 module Ayaneru

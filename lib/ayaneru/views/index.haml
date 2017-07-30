@@ -13,7 +13,7 @@
         %button.btn.btn-xs.btn-danger{:type => "submit"}
           %span.glyphicon.glyphicon-remove
       - if @results[tag]
-        - @results[tag]['values'].each do |value|
+        - @results[tag].each do |result|
           %dd
-            #{value['start_time']} ~ #{value['live_end_time']}
-            %a{:href => "http://live.nicovideo.jp/watch/#{value['cmsid']}", :target => "_blank"} #{value['title']}
+            #{Time.parse(result.startTime).strftime('%m月%d日 %I時%M分')} ~
+            %a{:href => result.url, :target => "_blank"} #{result.title}

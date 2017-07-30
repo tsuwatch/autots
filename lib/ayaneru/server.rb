@@ -14,12 +14,9 @@ module Ayaneru
       @registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
       @results = {}
       @registered_tags.each do |tag|
-        chunks = Ayaneru.niconico.search(tag, 7).to_s.split("\n")
-        chunks.each do |chunk|
-          row = JSON.parse(chunk)
-          next if !(row.has_value?('hits') and row.key?('values'))
-          @results[tag] = row
-          break
+        @results[tag] = []
+        Ayaneru.niconico.search(tag, 7).each do |r|
+          @results[tag] << r
         end
       end
 

@@ -13,25 +13,22 @@ EM::defer do
     if today != yesterday
       registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
       registered_tags.each do |tag|
-        r = Ayaneru.niconico.search(tag, 1).to_s.split("\n")
-        results = JSON.parse(r[2])
-        if results['values']
-          results['values'].each do |value|
+        response = Ayaneru.niconico.search(tag, 1)
+        response.each do |r|
+          begin
+            ret = Ayaneru.niconico.reserve(r.contentId)
+          rescue => exception
+            puts exception.message
             begin
-              ret = Ayaneru.niconico.reserve(value["cmsid"])
-            rescue => exception
-              puts exception.message
-              begin
-                Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "これ以上タイムシフト予約できません．『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）")
-              rescue => exception
-                puts exception.message
-              end
-            end
-            begin
-              Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "『#{value['title']}』（http://live.nicovideo.jp/watch/#{value['cmsid']}）をタイムシフト予約しました．") if ret
+              Ayaneru.twitter.direct_message_create(Ayaneru.twitter.user.screen_name, "これ以上タイムシフト予約できません．『#{r.title}』（#{r.url}）")
             rescue => exception
               puts exception.message
             end
+          end
+          begin
+            Ayaneru.twitter.direct_message_create(Ayaneru.twitter.user.screen_name, "『#{r.title}』（#{r.url}）をタイムシフト予約しました．") if ret
+          rescue => exception
+            puts exception.message
           end
         end
       end
