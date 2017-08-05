@@ -24,6 +24,7 @@ module Ayaneru
     end
 
     post '/' do
+      redirect '/' if params[:tag].strip.empty?
       Ayaneru.redis.rpush "tags", params[:tag]
       redirect '/'
     end
