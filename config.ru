@@ -7,7 +7,7 @@ require 'ayaneru'
 run Ayaneru::Server
 
 Thread.new do
-  Chrono::Trigger.new('* * * * *') do
+  Chrono::Trigger.new('5 0 * * *') do
     registered_tags = Ayaneru.redis.lrange 'tags', 0, -1
     registered_tags.each do |tag|
       response = Ayaneru.niconico.search(tag, 1)
@@ -23,7 +23,6 @@ Thread.new do
           end
         end
         begin
-          p 'go reserve dm' if ret
           Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "『#{r.title}』（#{r.url}）をタイムシフト予約しました．") if ret
         rescue => exception
           puts exception.message
