@@ -17,13 +17,13 @@ Thread.new do
         rescue => exception
           puts exception.message
           begin
-            Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "これ以上タイムシフト予約できません．『#{r.title}』（#{r.url}）")
+            Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.id, "これ以上タイムシフト予約できません．『#{r.title}』（#{r.url}）")
           rescue => exception
             puts exception.message
           end
         end
         begin
-          Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.screen_name, "『#{r.title}』（#{r.url}）をタイムシフト予約しました．") if ret
+          Ayaneru.twitter.create_direct_message(Ayaneru.twitter.user.id, "『#{r.title}』（#{r.url}）をタイムシフト予約しました．") if ret
         rescue => exception
           puts exception.message
         end
